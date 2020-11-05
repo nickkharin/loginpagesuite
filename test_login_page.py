@@ -1,3 +1,4 @@
+import pytest
 import allure
 from allure_commons.types import AttachmentType
 from .pages.login_page import LoginPage
@@ -5,6 +6,7 @@ from .pages.login_page import should_be_good_response
 from .pages.secure_page import SecurePage
 
 
+@pytest.mark.uitests
 class TestLoginPage:
     @allure.epic('UI Tests')
     @allure.story('Login page')
@@ -69,6 +71,7 @@ class TestLoginPage:
         page.should_be_red_message()
 
 
+@pytest.mark.uitests
 class TestSecurePage:
     @allure.epic('UI Tests')
     @allure.story('Secure page')
@@ -110,5 +113,6 @@ class TestSecurePage:
 @allure.severity(allure.severity_level.BLOCKER)
 @allure.step
 @allure.description('This test verifies log in and log out actions by API')
+@pytest.mark.apitests
 def test_correct_responses():
     should_be_good_response()
