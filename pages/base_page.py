@@ -6,7 +6,9 @@ from .locators import BasePageLocators
 
 
 class BasePage():
-    def __init__(self, browser, url, timeout=10):
+    url_def = "http://the-internet.herokuapp.com/login"
+
+    def __init__(self, browser, url=url_def, timeout=10):
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
@@ -29,10 +31,8 @@ class BasePage():
 
         return False
 
-    def should_be_authorized_user(self):
-        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
-                                                                     " probably unauthorised user"
+    def should_be_github_link(self):
+        assert self.is_element_present(*BasePageLocators.GITHUB_LINK), "There is no GITHUB link on page"
 
-    def should_be_message_if_logged(self):
-        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
-                                                                     " probably unauthorised user"
+    def should_be_green_message(self):
+        assert self.is_element_present(*BasePageLocators.GREEN_MESSAGE), "There isn't green message on page"

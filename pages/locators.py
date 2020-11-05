@@ -1,11 +1,13 @@
 from selenium.webdriver.common.by import By
 
 
-class BasePageLocators():
+class BasePageLocators:
     USER_ICON = (By.CSS_SELECTOR, ".icon-user")
+    GITHUB_LINK = (By.XPATH, "//a[@href = 'https://github.com/tourdedave/the-internet']")
+    GREEN_MESSAGE = (By.CLASS_NAME, "flash.success")
 
 
-class LoginPageLocators():
+class LoginPageLocators:
     LOGIN_FORM = (By.ID, "login")
     USERNAME_FORM = (By.ID, "username")
     PASSWORD_FORM = (By.ID, "password")
@@ -13,9 +15,6 @@ class LoginPageLocators():
     RED_MESSAGE = (By.ID, "flash")
 
 
-class SecurePageLocators():
+class SecurePageLocators:
     LOGOUT_BUTTON = (By.CSS_SELECTOR, "a.button.secondary.radius")
-    GREEN_MESSAGE = (By.CLASS_NAME, "flash.success")
-
-
-
+    WELCOME_MESSAGE = (By.XPATH, "//h4[@class = 'subheader']")
