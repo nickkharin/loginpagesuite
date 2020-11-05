@@ -1,6 +1,7 @@
 import allure
 from allure_commons.types import AttachmentType
-from .pages import LoginPage
+from .pages.login_page import LoginPage
+from .pages.login_page import should_be_good_response
 
 
 class TestLoginPage():
@@ -22,12 +23,12 @@ class TestLoginPage():
     @allure.severity(allure.severity_level.BLOCKER)
     @allure.step
     def test_guest_can_login(self, browser):
-        email = 'tomsmith'
+        username = 'tomsmith'
         password = 'SuperSecretPassword!'
         link = "http://the-internet.herokuapp.com/login"
         page = LoginPage(browser, link)
         page.open()
-        page.should_be_login_user(email, password)
+        page.should_be_login_user(username, password)
 
     @allure.epic('UI Tests')
     @allure.story('Login pages')
@@ -45,6 +46,12 @@ class TestLoginPage():
                           attachment_type=AttachmentType.PNG)
         page.should_be_red_message_if_incorrect_data()
 
+
+@allure.epic('API Tests')
+@allure.severity(allure.severity_level.BLOCKER)
+@allure.step
+def test_be_correct_responses():
+    should_be_good_response()
 
 '''
 class TestSecurePage():

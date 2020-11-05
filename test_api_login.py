@@ -26,7 +26,6 @@ def should_not_be_login_by_api_with_invalid_data():
     resp = requests.post(url + "/authenticate",  data=data)
     assert resp.status_code == requests.codes.ok, f"Failed response on login, status code: {resp.status_code}"
     assert resp.text.find("class='flash success'") == -1, "Incorrect login and password, but it could be logged"
-    resp.close()
 
 
 def should_be_logout_by_api():
@@ -35,8 +34,5 @@ def should_be_logout_by_api():
             "password": "SuperSecretPassword!"
             }
     resp = requests.post(url + "/authenticate", data=data)
-    pres = requests.get(url + "/logout?json=true")
-    assert pres.status_code == requests.codes.ok, f"Failed response on logout, status code: {resp.status_code}"
-    assert resp.text.find("logged out") != -1, "Incorrect login and password, but it could be logged"
-    resp.close()
-    pres.close()
+    pres = requests.get(url + "/logout")
+    assert pres.status_code == requests.codes.ok, f"Failed response on logout, status code: {pres.status_code}"
